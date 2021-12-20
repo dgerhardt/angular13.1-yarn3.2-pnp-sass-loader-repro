@@ -6,11 +6,36 @@ This repository contains multiple configurations of Yarn module resoulution with
 
 |===
 | angular-yarn-nm | Angular with node_modules | OK
-| angular-material-yarn-nm | Angular + Material with node_modules | OK
+| angular-material-yarn-nm | Angular + Material SASS with node_modules | OK
 | angular-yarn-pnp | Angular with PnP module resoulution | OK
-| angular-material-yarn-pnp | Angular + Material with PnP module resoulution | FAIL
+| angular-material-yarn-pnp | Angular + Material SASS with PnP module resoulution | FAIL
+|===
 
 == Reproducing the issue
 
 1. Switch to `angular-material-yarn-pnp` directory
 2. Run Angular: `yarn ng start`
+
+This fails with the following stacktrace:
+
+```
+HookWebpackError: Module build failed (from ./.yarn/__virtual__/sass-loader-virtual-a07e2721d3/0/cache/sass-loader-npm-12.4.0-3d3847fd35-0f7ca3633e.zip/node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+1 │ @use '../../cdk/overlay';
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  .yarn/__virtual__/@angular-material-virtual-f113869c44/0/cache/@angular-material-npm-13.1.1-701561aec7-d592b46c92.zip/node_modules/@angular/material/core/_core.scss 1:1  @forward
+  .yarn/__virtual__/@angular-material-virtual-f113869c44/0/cache/@angular-material-npm-13.1.1-701561aec7-d592b46c92.zip/node_modules/@angular/material/_index.scss 18:1     @use
+  src/styles.scss 2:1                                                                                                                                                       root stylesheet
+    at tryRunOrWebpackError (/home/dgerhardt/angular13.1-yarn3.2-pnp-sass-loader-repro/angular-material-yarn-pnp/.yarn/__virtual__/webpack-virtual-47b0d1e1c6/0/cache/webpack-npm-5.65.0-da658c1b49-221ab8ccd4.zip/node_modules/webpack/lib/HookWebpackError.js:88:9)
+    at __webpack_require_module__ (/home/dgerhardt/angular13.1-yarn3.2-pnp-sass-loader-repro/angular-material-yarn-pnp/.yarn/__virtual__/webpack-virtual-47b0d1e1c6/0/cache/webpack-npm-5.65.0-da658c1b49-221ab8ccd4.zip/node_modules/webpack/lib/Compilation.js:4979:12)
+    at __webpack_require__ (/home/dgerhardt/angular13.1-yarn3.2-pnp-sass-loader-repro/angular-material-yarn-pnp/.yarn/__virtual__/webpack-virtual-47b0d1e1c6/0/cache/webpack-npm-5.65.0-da658c1b49-221ab8ccd4.zip/node_modules/webpack/lib/Compilation.js:4936:18)
+    at /home/dgerhardt/angular13.1-yarn3.2-pnp-sass-loader-repro/angular-material-yarn-pnp/.yarn/__virtual__/webpack-virtual-47b0d1e1c6/0/cache/webpack-npm-5.65.0-da658c1b49-221ab8ccd4.zip/node_modules/webpack/lib/Compilation.js:5007:20
+    at symbolIterator (/home/dgerhardt/angular13.1-yarn3.2-pnp-sass-loader-repro/angular-material-yarn-pnp/.yarn/cache/neo-async-npm-2.6.2-75d6902586-deac9f8d00.zip/node_modules/neo-async/async.js:3485:9)
+    at done (/home/dgerhardt/angular13.1-yarn3.2-pnp-sass-loader-repro/angular-material-yarn-pnp/.yarn/cache/neo-async-npm-2.6.2-75d6902586-deac9f8d00.zip/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/home/dgerhardt/angular13.1-yarn3.2-pnp-sass-loader-repro/angular-material-yarn-pnp/.yarn/cache/tapable-npm-2.2.1-8cf5ff3039-3b7a1b4d86.zip/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/home/dgerhardt/angular13.1-yarn3.2-pnp-sass-loader-repro/angular-material-yarn-pnp/.yarn/cache/tapable-npm-2.2.1-8cf5ff3039-3b7a1b4d86.zip/node_modules/tapable/lib/Hook.js:18:14)
+    at /home/dgerhardt/angular13.1-yarn3.2-pnp-sass-loader-repro/angular-material-yarn-pnp/.yarn/__virtual__/webpack-virtual-47b0d1e1c6/0/cache/webpack-npm-5.65.0-da658c1b49-221ab8ccd4.zip/node_modules/webpack/lib/Compilation.js:4914:43
+    at symbolIterator (/home/dgerhardt/angular13.1-yarn3.2-pnp-sass-loader-repro/angular-material-yarn-pnp/.yarn/cache/neo-async-npm-2.6.2-75d6902586-deac9f8d00.zip/node_modules/neo-async/async.js:3482:9)
+```
