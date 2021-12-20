@@ -1,0 +1,16 @@
+= Reproduction for Angular 13.1 + Material + Yarn PnP compatibility issue
+
+== Repository content
+
+This repository contains multiple configurations of Yarn module resoulution with a newly generated Angular project (with and without @angular/material).
+
+|===
+| angular-yarn-nm | Angular with node_modules | OK
+| angular-material-yarn-nm | Angular + Material with node_modules | OK
+| angular-yarn-pnp | Angular with PnP module resoulution | OK
+| angular-material-yarn-pnp | Angular + Material with PnP module resoulution | FAIL
+
+== Reproducing the issue
+
+1. Switch to `angular-material-yarn-pnp` directory
+2. Run Angular: `yarn ng start`
